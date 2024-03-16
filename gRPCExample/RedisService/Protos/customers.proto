@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "RedisService";
+
+package customers;
+
+service CustomersGrpc {
+	rpc GetAllCustomers(GetAllCustomersRequest) returns (GetAllCustomersReply);
+	rpc GetCustomerById(GetCustomerByIdRequest) returns (GetCustomerByIdReply);
+	rpc GetMemebersByGroupId(GetMemebersByGroupIdRequest) returns (GetMemebersByGroupIdReply);
+
+	rpc CreateCustomer(CreateCustomerRequest) returns (CreateCustomerReply);
+	rpc DeleteCustomer(DeleteCustomerRequest) returns (DeleteCustomerReply);
+	rpc UpdateCustomer(UpdateCustomerRequest) returns (UpdateCustomerReply);
+}
+
+message Customer {
+	int64 id = 1;
+	string name = 2;
+	string password = 3;
+	string email = 4;
+}
+
+message GetAllCustomersRequest { }
+
+message GetAllCustomersReply {
+  repeated Customer Customers = 1;
+}
+
+message GetCustomerByIdRequest {
+	int64 id = 1;
+}
+message GetCustomerByIdReply {
+	Customer Customer = 1;
+}
+message GetMemebersByGroupIdRequest{
+	int64 id = 1;
+}
+
+message GetMemebersByGroupIdReply{
+	repeated Customer Customers = 1;
+}
+
+message CreateCustomerRequest {
+	Customer Customer = 1;
+}
+message CreateCustomerReply{
+	Customer Customer = 1;
+}
+
+message DeleteCustomerRequest {
+	int64 Customer_id = 1;
+}
+message DeleteCustomerReply {
+	bool result = 1;
+}
+
+message UpdateCustomerRequest {
+	Customer Customer = 1;
+}
+message UpdateCustomerReply{
+	Customer Customer = 1;
+}
